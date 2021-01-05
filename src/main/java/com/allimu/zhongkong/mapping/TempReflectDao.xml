@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allimu.zhongkong.dao.TempReflectDao">
+
+	<insert id="saveTempReflect" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into zk_temp_reflect
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tempId !=null">temp_id,</if>
+			<if test="schoolCode !=null">school_code,</if>
+			<if test="equipmentCode !=null">equipment_code,</if>
+			<if test="equipmentName !=null">equipment_name,</if>
+			<if test="createTime !=null">create_time,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tempId !=null">#{tempId,jdbcType=BIGINT},</if>
+			<if test="schoolCode !=null">#{schoolCode,jdbcType=BIGINT},</if>
+			<if test="equipmentCode !=null">#{equipmentCode,jdbcType=VARCHAR},</if>
+			<if test="equipmentName !=null">#{equipmentName,jdbcType=VARCHAR},</if>
+			<if test="createTime !=null"> #{createTime,jdbcType=TIMESTAMP},</if>
+		</trim>
+	</insert>
+	
+	<select id="getTempReflect" resultType="com.allimu.zhongkong.entity.TempReflect">
+		SELECT * FROM
+		zk_temp_reflect WHERE temp_id=${tempId} AND equipment_code = #{equipmentCode}
+	</select>
+	
+	<delete id="deleteTempReflect">
+    	DELETE FROM zk_temp_reflect WHERE temp_id=${tempId} AND equipment_code = #{equipmentCode}
+	</delete>
+	
+	<select id="getTempId" resultType="java.lang.Long">
+		SELECT temp_id FROM
+		zk_temp_reflect WHERE school_code=${schoolCode} AND equipment_code = #{equipmentCode}
+	</select>
+	
+</mapper>

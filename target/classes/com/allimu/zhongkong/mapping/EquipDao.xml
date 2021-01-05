@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allimu.zhongkong.dao.EquipDao">
+
+	<insert id="saveEquip" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into zk_equip
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tempId !=null">temp_id,</if>
+			<if test="regionCode !=null">region_code,</if>
+			<if test="regionName !=null">region_name,</if>
+			<if test="schoolCode !=null">school_code,</if>
+			<if test="schoolName !=null">school_name,</if>
+			<if test="buildCode !=null">build_code,</if>
+			<if test="buildName !=null">build_name,</if>
+			<if test="classCode !=null">class_code,</if>
+			<if test="className !=null">class_name,</if>
+			<if test="manufName !=null">manuf_name, </if>
+			<if test="brandName !=null">brand_name,</if>
+			<if test="modelName !=null">model_name,</if>
+			<if test="typeName !=null">type_name,</if>
+			<if test="code !=null">code,</if>
+			<if test="name !=null">name,</if>
+			<if test="macAddress !=null">mac_address,</if>
+			<if test="ip !=null">ip,</if>
+			<if test="createTime !=null">create_time,</if>
+		</trim>
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="tempId !=null">#{tempId,jdbcType=BIGINT},</if>
+			<if test="regionCode !=null">#{regionCode,jdbcType=BIGINT},</if>
+			<if test="regionName !=null">#{regionName,jdbcType=VARCHAR},</if>
+			<if test="schoolCode !=null">#{schoolCode,jdbcType=BIGINT},</if>
+			<if test="schoolName !=null">#{schoolName,jdbcType=VARCHAR},</if>
+			<if test="buildCode !=null">#{buildCode,jdbcType=BIGINT},</if>
+			<if test="buildName !=null">#{buildName,jdbcType=VARCHAR},</if>
+			<if test="classCode !=null">#{classCode,jdbcType=BIGINT},</if>
+			<if test="className !=null">#{className,jdbcType=VARCHAR},</if>
+			<if test="manufName !=null">#{manufName,jdbcType=VARCHAR},</if>
+			<if test="brandName !=null">#{brandName,jdbcType=VARCHAR},</if>
+			<if test="modelName !=null">#{modelName,jdbcType=VARCHAR},</if>
+			<if test="typeName !=null">#{typeName,jdbcType=VARCHAR},</if>
+			<if test="code !=null">#{code,jdbcType=VARCHAR},</if>
+			<if test="name !=null">#{name,jdbcType=VARCHAR},</if>
+			<if test="macAddress !=null">#{macAddress,jdbcType=VARCHAR},</if>
+			<if test="ip !=null">#{ip,jdbcType=VARCHAR},</if>
+			<if test="createTime !=null">#{createTime,jdbcType=TIMESTAMP}</if>
+		</trim>
+	</insert>
+	
+	<update id="updateEquip">
+		UPDATE zk_equip 
+		<set>
+			<if test="buildCode !=null">build_code=#{buildCode},</if>
+			<if test="buildName !=null">build_name=#{buildName},</if>
+			<if test="classCode !=null">class_code=#{classCode},</if>
+			<if test="className !=null">class_name=#{className},</if>
+			<if test="macAddress !=null">mac_address=#{macAddress},</if>
+			<if test="createTime !=null">create_time=#{createTime}</if>
+		</set>
+		WHERE temp_id = ${tempId}
+	</update>
+	
+	<select id="getMacAddressByTempId" resultType="java.lang.String">
+		SELECT mac_address FROM
+		zk_equip WHERE temp_id = ${tempId}
+	</select>
+	
+	<select id="getMacAddressByCode" resultType="java.lang.String">
+		SELECT mac_address FROM
+		zk_equip WHERE school_code = ${schoolCode} AND code = #{equipmentCode}
+	</select>
+	
+</mapper>
