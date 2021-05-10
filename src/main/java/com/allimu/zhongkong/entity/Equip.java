@@ -185,8 +185,29 @@ public class Equip implements Serializable {
 		this.createTime = createTime;
 	}
 
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Equip{" +
+				"id=" + id +
+				", tempId=" + tempId +
+				", regionCode=" + regionCode +
+				", regionName='" + regionName + '\'' +
+				", schoolCode=" + schoolCode +
+				", schoolName='" + schoolName + '\'' +
+				", buildCode=" + buildCode +
+				", buildName='" + buildName + '\'' +
+				", classCode=" + classCode +
+				", className='" + className + '\'' +
+				", manufName='" + manufName + '\'' +
+				", brandName='" + brandName + '\'' +
+				", modelName='" + modelName + '\'' +
+				", typeName='" + typeName + '\'' +
+				", code='" + code + '\'' +
+				", name='" + name + '\'' +
+				", macAddress='" + macAddress + '\'' +
+				", ip='" + ip + '\'' +
+				", createTime=" + createTime +
+				'}';
+	}
 }

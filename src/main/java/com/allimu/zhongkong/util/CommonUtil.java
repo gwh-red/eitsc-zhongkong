@@ -36,27 +36,33 @@ public class CommonUtil {
      */
     public static String remoteServiceUrl;
 
+    /**
+     * 远程连接
+     */
+    public static String codeRemoteServiceUrl;
+
 
     static {
-		
-	/*	Properties ps=new Properties();
-		try {
-			ps.load(new InputStreamReader(new FileInputStream("/usr/local/zhongkong-common.properties"),"UTF-8"));
-			schoolCode=Long.parseLong(ps.getProperty("schoolCode"));
-			schoolName = ps.getProperty("schoolName");
-			udpServerPort = Integer.parseInt(ps.getProperty("udpServerPort"));
-			equipTypeList = ps.getProperty("equipTypeList");
-			remoteServiceUrl = ps.getProperty("remoteServiceUrl");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
+
+        Properties ps = new Properties();
+
+
+       /* try {
+            ps.load(new InputStreamReader(new FileInputStream("/usr/local/zhongkong-common.properties"), "UTF-8"));
+            schoolCode = Long.parseLong(ps.getProperty("schoolCode"));
+            schoolName = ps.getProperty("schoolName");
+            udpServerPort = Integer.parseInt(ps.getProperty("udpServerPort"));
+            equipTypeList = ps.getProperty("equipTypeList");
+            remoteServiceUrl = ps.getProperty("remoteServiceUrl");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 		
 		/* 其中"UTF-8"，用于明确指定.properties文件的编码格式（不指定则默认使用OS的,
 	      这会造成同一份配置文件同一份代码,在linux和windows上、英文windows和中文windows之间的表现都不一致)
 	      这个参数应该和具体读取的properties文件的格式匹 */
-        Properties ps = new Properties();
         try {
             ps.load(new InputStreamReader(
                     CommonUtil.class.getClassLoader().getResourceAsStream("zhongkong-common.properties"), "UTF-8"));
@@ -65,6 +71,7 @@ public class CommonUtil {
             udpServerPort = Integer.parseInt(ps.getProperty("udpServerPort"));
             equipTypeList = ps.getProperty("equipTypeList");
             remoteServiceUrl = ps.getProperty("remoteServiceUrl");
+            codeRemoteServiceUrl = ps.getProperty("codeRemoteServiceUrl");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

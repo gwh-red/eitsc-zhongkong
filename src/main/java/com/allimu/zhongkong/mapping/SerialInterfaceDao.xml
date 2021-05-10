@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allimu.zhongkong.dao.SerialInterfaceDao">
+
+    <insert id="saveSerialInterface" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into zk_serial_interface
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mac!=null">mac,</if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="mac!=null">#{mac,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+
+    <select id="getSerialInterface" resultType="com.allimu.zhongkong.entity.SerialInterface">
+        SELECT *
+        FROM zk_serial_interface
+        WHERE mac = #{mac}
+    </select>
+
+
+</mapper>
